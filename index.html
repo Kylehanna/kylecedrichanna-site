@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyle Cedric Hanna — I deploy private AI</title>
+<meta name="description" content="I deploy private AI systems for law firms and small businesses. Try the systems I've deployed, read the writing, and get the free checklist.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --paper:#fbfaf7; --paper-2:#f3f1ea; --muted:#6b6862;
+    --line:#e4e0d6; --accent:#0f4c5c; --accent-soft:#0f4c5c14; --gold:#b8862f;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;font-size:16px}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600;color:var(--accent)}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.01em}
+  .navlinks{display:flex;align-items:center;gap:30px}
+  .navlinks a{font-size:13.5px;color:var(--muted);transition:color .2s}
+  .navlinks a:hover{color:var(--ink)}
+  .navbtn{background:var(--ink);color:var(--paper)!important;padding:10px 18px;border-radius:2px;font-weight:500;font-size:13px}
+  @media(max-width:720px){.navlinks a:not(.navbtn){display:none}}
+
+  /* hero */
+  header{padding:96px 0 72px}
+  header h1{font-size:clamp(40px,7vw,76px);max-width:15ch;margin:20px 0 0}
+  header .lede{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:54ch;margin:24px 0 32px;font-family:var(--sans)}
+  .capture{display:flex;gap:10px;flex-wrap:wrap;max-width:460px}
+  .capture input{flex:1;min-width:210px;height:50px;padding:0 16px;border:1px solid var(--line);border-radius:2px;font-family:var(--sans);font-size:15px;background:#fff}
+  .capture button{height:50px;padding:0 22px;border:none;border-radius:2px;background:var(--gold);color:#fff;font-weight:600;font-size:14px;font-family:var(--sans);cursor:pointer;transition:opacity .2s}
+  .capture button:hover{opacity:.88}
+  .microcopy{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+  .cred{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .cred .wrap{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;padding:20px 28px}
+  .cred span{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+  section{padding:84px 0}
+  .sec-head{margin-bottom:46px;max-width:60ch}
+  .sec-head h2{font-size:clamp(30px,4.6vw,46px);margin:12px 0 0}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:17px}
+
+  /* work / demos */
+  .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+  .demo{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;transition:transform .25s,box-shadow .25s}
+  .demo:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(26,26,26,.10)}
+  .demo .thumb{height:200px;background:linear-gradient(135deg,var(--accent),#0a3540);display:flex;align-items:flex-end;padding:20px;position:relative}
+  .demo .thumb.b{background:linear-gradient(135deg,#5a4632,#2c2418)}
+  .demo .thumb.c{background:linear-gradient(135deg,#33445c,#1a2336)}
+  .demo .thumb .kicker{color:#fff;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.85}
+  .demo .thumb .ph{position:absolute;top:16px;right:18px;font-family:var(--sans);font-size:11px;color:#fff;opacity:.6;border:1px solid rgba(255,255,255,.4);padding:3px 8px;border-radius:20px}
+  .demo .body{padding:26px}
+  .demo h3{font-size:25px;margin-bottom:8px}
+  .demo p{color:var(--muted);font-size:14.5px;min-height:64px}
+  .demo .tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+  .demo .tag{font-family:var(--sans);font-size:11px;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:20px;font-weight:500}
+  .demo .try{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink);display:inline-flex;align-items:center;gap:6px;border-bottom:1.5px solid var(--gold);padding-bottom:2px}
+
+  /* writing */
+  .writing{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+  .post{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;transition:transform .2s}
+  .post:hover{transform:translateY(-3px)}
+  .post .tag{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .post h3{font-size:21px;margin:10px 0 0;line-height:1.2}
+  .post .src{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:12px}
+
+  /* help */
+  .help-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:720px){.help-grid{grid-template-columns:1fr}}
+  .help-card{border:1px solid var(--line);border-radius:4px;padding:34px;background:#fff}
+  .help-card h3{font-size:25px;margin-bottom:10px}
+  .help-card p{color:var(--muted);font-size:15px}
+
+  /* join band */
+  .join{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;padding:64px 28px}
+  .join h2{color:var(--paper);font-size:clamp(28px,4.4vw,42px);max-width:20ch;margin:0 auto 10px}
+  .join p{color:#bdb9b0;margin-bottom:26px}
+  .join .capture{margin:0 auto;justify-content:center}
+  .join .capture input{border-color:transparent}
+  .join .book{display:inline-block;margin-top:16px;color:#bdb9b0;font-size:13px;border-bottom:1px solid #807c74}
+
+  footer{padding:46px 0;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  footer p,footer a{font-size:13px;color:var(--muted)}
+  footer .flinks{display:flex;gap:22px}
+  .note{background:#fff7e6;border:1px solid #ecdca5;color:#7a5a12;font-size:12px;padding:8px 14px;border-radius:3px;margin-top:18px;display:inline-block}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top">Kyle Cedric Hanna</a>
+  <div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="#help">Services</a>
+    <a class="navbtn" href="#join">Join the list</a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<header id="top"><div class="wrap">
+  <span class="eyebrow">Private AI · Law firms & small businesses</span>
+  <h1>AI that survives an audit.</h1>
+  <p class="lede">I deploy private, defensible AI for firms and businesses that handle sensitive data — traceable, logged, and built to hold up when a client, a regulator, or opposing counsel asks how it works. Try the systems below, then grab the free checklist.</p>
+  <form class="capture" action="#" data-kit="REPLACE_WITH_KIT_FORM">
+    <input type="email" placeholder="Your email" aria-label="Email" required>
+    <button type="submit">Send me the checklist</button>
+  </form>
+  <p class="microcopy">Free · "Use AI Without Leaking Your Data" · 2-minute read</p>
+</div></header>
+
+<div class="cred"><div class="wrap">
+  <span>The White House</span><span>University of Chicago</span><span>Embedded with 30+ research & innovation offices</span><span>Deploys real production AI</span>
+</div></div>
+
+<!-- WORK / DEMOS -->
+<section id="work"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Selected work</span>
+    <h2>Don't take my word for it — try the systems I've deployed.</h2>
+    <p>Live, interactive prototypes running on public data. The production versions run privately, in the client's own environment.</p>
+  </div>
+  <div class="work-grid">
+
+    <article class="demo">
+      <div class="thumb"><span class="ph">Live demo</span><span class="kicker">Patent &amp; document intelligence</span></div>
+      <div class="body">
+        <h3>Translation Radar</h3>
+        <p>Ask plain-English questions across thousands of patents and technical documents — and get answers with citations back to the exact source.</p>
+        <div class="tags"><span class="tag">RAG</span><span class="tag">Cited answers</span><span class="tag">Document search</span></div>
+        <a class="try" href="#" data-demo="translation-radar">Try the live demo →</a>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div class="thumb b"><span class="ph">Live demo</span><span class="kicker">Investment intelligence</span></div>
+      <div class="body">
+        <h3>Real-Estate Demand Radar</h3>
+        <p>Forecasts where housing demand is building — before the market prices it in — from employment and migration signals across hundreds of metro markets.</p>
+        <div class="tags"><span class="tag">Predictive analytics</span><span class="tag">Agentic</span><span class="tag">Dashboards</span></div>
+        <a class="try" href="#" data-demo="real-estate-radar">Try the live demo →</a>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div class="thumb c"><span class="ph">Coming soon</span><span class="kicker">Legal &amp; research assistant</span></div>
+      <div class="body">
+        <h3>Research Assistant</h3>
+        <p>Query a body of legal and technical work product and get traceable, source-cited answers — built for high-stakes domains where "almost right" isn't good enough.</p>
+        <div class="tags"><span class="tag">RAG</span><span class="tag">Verifiable</span><span class="tag">Multi-step</span></div>
+        <a class="try" href="#" data-demo="research-assistant">Demo coming soon →</a>
+      </div>
+    </article>
+
+  </div>
+</div></section>
+
+<!-- WRITING -->
+<section id="writing" class="writing"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Writing</span>
+    <h2>Plain-English AI, for people who run things.</h2>
+    <p>Practical pieces on deploying AI safely — on Substack and Medium.</p>
+  </div>
+  <div class="posts">
+    <a class="post" href="#"><span class="tag">Risk</span><h3>How to use AI without leaking client or customer data</h3><p class="src">Substack →</p></a>
+    <a class="post" href="#"><span class="tag">Build vs. Buy</span><h3>You don't need the best AI. You need your AI, deployed.</h3><p class="src">Substack →</p></a>
+    <a class="post" href="#"><span class="tag">Confidential AI</span><h3>The DeepSeek bans aren't really about DeepSeek</h3><p class="src">Medium →</p></a>
+    <a class="post" href="#"><span class="tag">Legal</span><h3>What every managing partner should know about AI and Rule 1.6</h3><p class="src">Substack →</p></a>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section id="help"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">How I help</span>
+    <h2>Deploy it for you — or teach your team to use it.</h2>
+  </div>
+  <div class="help-grid">
+    <div class="help-card"><h3>Deploy your private AI</h3><p>Done-for-you: I set up custom, defensible AI in your own environment, so your documents and client data never leave your control.</p></div>
+    <div class="help-card"><h3>Train your team to use AI</h3><p>Hands-on workshops and CLE sessions: which tools to use, how to use them safely, and where AI actually saves time and money.</p></div>
+  </div>
+</div></section>
+
+<!-- JOIN -->
+<section id="join"><div class="wrap"><div class="join">
+  <span class="eyebrow" style="color:var(--gold)">Join the list</span>
+  <h2>Get the checklist. New builds and writing in your inbox.</h2>
+  <p>The 5 questions that keep your data yours — plus new demos and articles as they ship.</p>
+  <form class="capture" action="#" data-kit="REPLACE_WITH_KIT_FORM">
+    <input type="email" placeholder="Your email" aria-label="Email" required>
+    <button type="submit">Send me the checklist</button>
+  </form>
+  <a class="book" href="#">Or book a call →</a>
+</div></div></section>
+
+<footer><div class="wrap">
+  <p>© 2026 Kyle Cedric Hanna · Founder, Aether Ventures · Chicago</p>
+  <div class="flinks"><a href="#work">Work</a><a href="#writing">Writing</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
+</div>
+<div class="wrap"><span class="note">Setup: wire forms to Kit · add real demo URLs to each "Try the live demo" link · set LinkedIn / book-a-call / article links · confirm "30+" is accurate.</span></div>
+</footer>
+</body>
+</html>
