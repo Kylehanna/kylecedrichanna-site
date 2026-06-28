@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Readiness Check — Kyle Cedric Hanna</title>
+<meta name="description" content="In 5 minutes, find out where your AI use is exposed — and what to fix first. A free scored self-assessment + worksheet.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --paper:#fbfaf7; --paper-2:#f3f1ea; --muted:#6b6862;
+    --line:#e4e0d6; --accent:#0f4c5c; --accent-soft:#0f4c5c14; --gold:#b8862f;
+    --red:#a23b2d; --green:#2f6b4f;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:780px;margin:0 auto;padding:0 24px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:600;color:var(--accent)}
+
+  nav{border-bottom:1px solid var(--line);background:var(--paper)}
+  nav .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--serif);font-size:21px;font-weight:600}
+  nav a.back{font-size:13.5px;color:var(--muted);text-decoration:none}
+  nav a.back:hover{color:var(--ink)}
+
+  header{padding:64px 0 36px;text-align:center}
+  header h1{font-size:clamp(34px,6vw,54px);max-width:16ch;margin:14px auto 0}
+  header p{color:var(--muted);font-size:18px;max-width:52ch;margin:18px auto 0}
+
+  .progress{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+  .progress .wrap{display:flex;align-items:center;gap:14px}
+  .bar{flex:1;height:6px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+  .progress span{font-family:var(--sans);font-size:12.5px;color:var(--muted);white-space:nowrap}
+
+  section{padding:14px 0}
+  .q{border-bottom:1px solid var(--line);padding:26px 0}
+  .q .n{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .q h3{font-size:21px;margin:8px 0 16px;font-weight:600}
+  .opts{display:flex;gap:12px;flex-wrap:wrap}
+  .opt{flex:1;min-width:160px;border:1.5px solid var(--line);border-radius:4px;padding:14px 16px;background:#fff;cursor:pointer;font-family:var(--sans);font-size:14.5px;color:var(--ink);text-align:left;transition:.15s}
+  .opt:hover{border-color:var(--accent)}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+
+  .scorebtn{display:block;width:100%;margin:34px 0;height:56px;border:none;border-radius:3px;background:var(--ink);color:var(--paper);font-family:var(--sans);font-weight:600;font-size:16px;cursor:pointer;transition:.2s}
+  .scorebtn:disabled{opacity:.4;cursor:not-allowed}
+  .scorebtn:not(:disabled):hover{background:var(--accent)}
+
+  /* result */
+  #result{display:none;border:1.5px solid var(--accent);border-radius:8px;padding:36px 32px;margin:20px 0;background:#fff;text-align:center}
+  #result .score{font-family:var(--serif);font-size:64px;font-weight:700;line-height:1;color:var(--accent)}
+  #result .score small{font-size:24px;color:var(--muted)}
+  #result h2{font-size:30px;margin:10px 0 6px}
+  #result .tierdesc{color:var(--muted);font-size:16px;max-width:54ch;margin:0 auto}
+  .tag-tier{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+
+  /* capture */
+  .capture-box{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:32px 28px;margin:28px 0;text-align:center}
+  .capture-box h3{font-size:24px;margin-bottom:8px}
+  .capture-box p{color:var(--muted);font-size:15px;max-width:48ch;margin:0 auto 18px}
+  .capform{display:flex;gap:10px;flex-wrap:wrap;max-width:440px;margin:0 auto}
+  .capform input{flex:1;min-width:200px;height:50px;padding:0 16px;border:1px solid var(--line);border-radius:3px;font-family:var(--sans);font-size:15px;background:#fff}
+  .capform button{height:50px;padding:0 22px;border:none;border-radius:3px;background:var(--gold);color:#fff;font-weight:600;font-size:14px;font-family:var(--sans);cursor:pointer}
+  .capform button:hover{opacity:.9}
+  .capok{display:none;color:var(--green);font-weight:600;font-family:var(--sans);font-size:15px;margin-top:6px}
+
+  /* worksheet */
+  #worksheet{display:none;border-top:2px solid var(--ink);margin-top:30px;padding-top:36px}
+  #worksheet .ws-head{margin-bottom:8px}
+  .ws-block{margin:26px 0}
+  .ws-block h3{font-size:22px;margin-bottom:6px}
+  .ws-block .hint{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .ws-block textarea,.ws-block input[type=text]{width:100%;font-family:var(--sans);font-size:14.5px;border:1px solid var(--line);border-radius:4px;padding:12px;background:#fff;resize:vertical}
+  table.ws{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13.5px}
+  table.ws th,table.ws td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+  table.ws th{background:var(--paper-2);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  table.ws td input{width:100%;border:none;font-family:var(--sans);font-size:13.5px;background:transparent}
+  .rag{display:flex;gap:8px}
+  .rag label{font-family:var(--sans);font-size:12px;display:flex;align-items:center;gap:4px;cursor:pointer}
+  .dot{width:13px;height:13px;border-radius:50%;display:inline-block}
+  .r{background:var(--red)} .y{background:var(--gold)} .g{background:var(--green)}
+
+  .finalcta{background:var(--accent);color:#fff;border-radius:8px;padding:40px 32px;text-align:center;margin:40px 0 60px}
+  .finalcta h2{color:#fff;font-size:30px;margin-bottom:10px}
+  .finalcta p{color:#cfe0e4;max-width:50ch;margin:0 auto 22px;font-size:16px}
+  .finalcta a{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font-family:var(--sans);font-weight:600;font-size:15px;padding:15px 30px;border-radius:3px}
+  .printbtn{background:none;border:1px solid var(--line);color:var(--muted);font-family:var(--sans);font-size:13px;padding:10px 18px;border-radius:3px;cursor:pointer;margin-top:8px}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;color:var(--muted);font-family:var(--sans);font-size:13px}
+  @media print{nav,.progress,.scorebtn,.capture-box,.finalcta,.printbtn,footer{display:none!important}#worksheet,#result{display:block!important;border:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="/" style="text-decoration:none">Kyle Cedric Hanna</a>
+  <a class="back" href="/">← Back to site</a>
+</div></nav>
+
+<header><div class="wrap">
+  <span class="eyebrow">Free · 5 minutes</span>
+  <h1>Is your AI ready to survive an audit?</h1>
+  <p>Your team is already using AI. The question is whether you could prove what it did if a client, a regulator, or opposing counsel asked. Answer 10 questions and find out where you're exposed.</p>
+</div></header>
+
+<div class="progress"><div class="wrap">
+  <div class="bar"><i id="barfill"></i></div>
+  <span id="progresstxt">0 / 10</span>
+</div></div>
+
+<section><div class="wrap" id="quiz"><!-- questions injected by JS --></div>
+
+  <div class="wrap">
+    <button class="scorebtn" id="scorebtn" disabled onclick="showResult()">Answer all 10 to see your score</button>
+
+    <div id="result">
+      <div class="tag-tier" id="tiertag"></div>
+      <div class="score" id="scorenum"></div>
+      <h2 id="tiertitle"></h2>
+      <p class="tierdesc" id="tierdesc"></p>
+    </div>
+
+    <div class="capture-box" id="capbox" style="display:none">
+      <h3>Get your worksheet + the fixes for your tier</h3>
+      <p>I'll send the editable AI-Readiness worksheet (the same one I use in engagements) and the specific gaps to close first. No spam.</p>
+      <form class="capform" id="capform" data-kit="REPLACE_WITH_KIT_FORM_ACTION" onsubmit="return capture(event)">
+        <input type="email" id="email" placeholder="you@firm.com" required aria-label="Email">
+        <button type="submit">Send me the worksheet</button>
+      </form>
+      <div class="capok" id="capok">✓ On its way. Scroll down to start the worksheet now.</div>
+    </div>
+  </div>
+
+  <div class="wrap" id="worksheet">
+    <div class="ws-head"><span class="eyebrow">The worksheet</span></div>
+    <h2 style="font-size:30px;margin:6px 0 4px">Your AI-Readiness Worksheet</h2>
+    <p style="color:var(--muted);font-size:15px">Fill this in and you've done the first hour of the work. It's exactly what we'd build out together in a Readiness Review. <button class="printbtn" onclick="window.print()">Print / Save as PDF</button></p>
+
+    <div class="ws-block">
+      <h3>A. Tool inventory</h3>
+      <div class="hint">Every AI tool your team uses — or might be using.</div>
+      <table class="ws"><thead><tr><th>Tool</th><th>Who uses it</th><th>Data it could touch</th><th>Vendor agreement?</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="ws-block">
+      <h3>B. Sensitive-data map</h3>
+      <div class="hint">What protected / regulated information exists? (client files, patient records, financials, privileged material, PII, IP…)</div>
+      <textarea rows="3"></textarea>
+    </div>
+
+    <div class="ws-block">
+      <h3>C. The 5-component gap check</h3>
+      <div class="hint">Rate each pillar of a defensible deployment.</div>
+      <table class="ws"><thead><tr><th>Component</th><th>What it means</th><th>Rating</th></tr></thead><tbody id="ragrows"></tbody></table>
+    </div>
+
+    <div class="ws-block">
+      <h3>D. Your top 3 exposures</h3>
+      <div class="hint">From the above, the three things that worry you most.</div>
+      <textarea rows="3" placeholder="1.&#10;2.&#10;3."></textarea>
+    </div>
+
+    <div class="ws-block">
+      <h3>E. Where AI would actually help</h3>
+      <div class="hint">The two workflows where AI would save the most time or money if it were safe to use.</div>
+      <textarea rows="2" placeholder="1.&#10;2."></textarea>
+    </div>
+
+    <div class="finalcta">
+      <h2>You've got the raw material. Now make it a plan.</h2>
+      <p>The AI-Readiness Review turns this into a prioritized roadmap and a scoped build proposal — a 1–2 week engagement, fee credited toward your build. The first step is a free intro call.</p>
+      <a href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Book a free intro call →</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 Kyle Cedric Hanna · Chicago · Private, audit-ready AI</div></footer>
+
+<script>
+  const QUESTIONS = [
+    {n:"The perimeter", q:"Can you name exactly where your data goes when your team uses an AI tool — which company's servers, under whose terms?", a:["Yes, we know","No / Not sure"]},
+    {n:"Shadow AI", q:"Could a staff member paste a confidential client, patient, or financial document into a free AI tool today without anyone knowing?", a:["No — that's blocked/covered","Yes / Not sure"]},
+    {n:"The vendor agreement", q:"For any AI tool that touches sensitive data, has the vendor signed the agreement you need (BAA, DPA, or equivalent)?", a:["Yes","No / Not sure"]},
+    {n:"The audit trail", q:"If asked, could you produce a log of every question your AI was asked about a matter and what it produced?", a:["Yes","No / Not sure"]},
+    {n:"Grounding", q:"Does your AI answer from your actual documents — or does it sometimes confidently make things up?", a:["Grounded in our documents","It can make things up / Not sure"]},
+    {n:"Human in the loop", q:"Is there a human reviewing AI output before it reaches a client or drives a real decision?", a:["Yes, always","Not consistently / Not sure"]},
+    {n:"The policy", q:"Do you have a written AI-use policy your team actually knows and follows?", a:["Yes","No / Not sure"]},
+    {n:"The rulebook", q:"Do you know which specific rules govern your AI use (Rule 1.6, HIPAA, GDPR, FINRA, FedRAMP)?", a:["Yes","No / Not sure"]},
+    {n:"Access control", q:"Is access to AI systems — and the data they can reach — limited by role?", a:["Yes","No / Not sure"]},
+    {n:"Ownership of output", q:"Do you know who owns, and who can see, what your AI produces?", a:["Yes","No / Not sure"]}
+  ];
+  const RAG = [
+    ["Data perimeter","Sensitive data stays inside your control"],
+    ["Grounded retrieval","AI answers from your real documents, not guesses"],
+    ["Audit trail","Every query, source, and output is logged"],
+    ["Human in the loop","A person reviews consequential output"],
+    ["Governance","Policy, access control, and ownership are defined"]
+  ];
+  const answers = new Array(QUESTIONS.length).fill(null);
+
+  const quiz = document.getElementById('quiz');
+  QUESTIONS.forEach((item,i)=>{
+    const div=document.createElement('div'); div.className='q';
+    div.innerHTML = `<div class="n">${String(i+1).padStart(2,'0')} · ${item.n}</div><h3>${item.q}</h3>
+      <div class="opts">
+        <button class="opt" onclick="pick(${i},0,this)">${item.a[0]}</button>
+        <button class="opt" onclick="pick(${i},1,this)">${item.a[1]}</button>
+      </div>`;
+    quiz.appendChild(div);
+  });
+
+  function pick(i,val,el){
+    answers[i]=val;
+    el.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+    el.classList.add('sel');
+    const done = answers.filter(a=>a!==null).length;
+    document.getElementById('barfill').style.width = (done/QUESTIONS.length*100)+'%';
+    document.getElementById('progresstxt').textContent = done+' / '+QUESTIONS.length;
+    const btn=document.getElementById('scorebtn');
+    if(done===QUESTIONS.length){ btn.disabled=false; btn.textContent='See my score →'; }
+  }
+
+  function showResult(){
+    const score = answers.reduce((s,a)=>s+(a||0),0);
+    let tier,title,desc,color;
+    if(score<=2){ tier="On Track — but verify"; color="var(--green)"; title="You're ahead of most."; desc="The risk now is the exposure you can't see — a quiet shadow-AI habit, a vendor term that changed, a log that isn't actually being kept. A short review confirms you're solid and catches the blind spots."; }
+    else if(score<=6){ tier="At Risk"; color="var(--gold)"; title="You have real, specific exposure."; desc="Nothing's on fire yet, but you're one pasted document or one client questionnaire away from a problem. This is the most common — and most fixable — range. Prioritize the two or three gaps that matter most."; }
+    else { tier="Exposed"; color="var(--red)"; title="You're likely already out of compliance somewhere."; desc="And you wouldn't be able to prove otherwise. This isn't a reason to ban AI — it's a reason to put a defensible version in place fast, before an incident makes the decision for you."; }
+    const r=document.getElementById('result');
+    document.getElementById('tiertag').textContent=tier;
+    document.getElementById('tiertag').style.background=color; document.getElementById('tiertag').style.color="#fff";
+    document.getElementById('scorenum').innerHTML=score+'<small> / 10 exposure points</small>';
+    document.getElementById('tiertitle').textContent=title;
+    document.getElementById('tierdesc').textContent=desc;
+    r.style.display='block';
+    document.getElementById('capbox').style.display='block';
+    r.scrollIntoView({behavior:'smooth'});
+  }
+
+  // build RAG rows
+  const ragrows=document.getElementById('ragrows');
+  RAG.forEach((row,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><b>${row[0]}</b></td><td>${row[1]}</td><td><div class="rag">
+      <label><span class="dot r"></span><input type="radio" name="rag${i}" style="display:none">R</label>
+      <label><span class="dot y"></span>Y</label>
+      <label><span class="dot g"></span>G</label></div></td>`;
+    ragrows.appendChild(tr);
+  });
+
+  function capture(e){
+    e.preventDefault();
+    // TODO: POST to Kit form action when wired. For now, reveal worksheet client-side.
+    document.getElementById('capform').style.display='none';
+    document.getElementById('capok').style.display='block';
+    document.getElementById('worksheet').style.display='block';
+    setTimeout(()=>document.getElementById('worksheet').scrollIntoView({behavior:'smooth'}),250);
+    return false;
+  }
+</script>
+</body>
+</html>

@@ -179,15 +179,83 @@
   </div>
 </div></section>
 
-<!-- SERVICES -->
+<!-- SERVICES / OFFER STACK -->
+<style>
+  .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .offer{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 28px;transition:transform .2s,box-shadow .2s}
+  .offer:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(26,26,26,.09)}
+  .offer.feature{border:1.5px solid var(--accent);box-shadow:0 14px 40px rgba(15,76,92,.10)}
+  .offer .tier{font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:600;color:var(--accent);margin-bottom:14px}
+  .offer.feature .tier{color:var(--gold)}
+  .offer h3{font-size:26px;margin-bottom:8px}
+  .offer .desc{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+  .offer ul{list-style:none;margin:0 0 18px;padding:0}
+  .offer li{font-family:var(--sans);font-size:14px;color:var(--ink);padding-left:22px;position:relative;margin-bottom:9px;line-height:1.5}
+  .offer li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+  .offer .terms{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:auto;padding-top:8px;border-top:1px solid var(--line)}
+  .offer .terms b{color:var(--accent);font-weight:600}
+  .offer .cta{display:inline-block;margin-top:16px;text-align:center;font-family:var(--sans);font-weight:600;font-size:14px;padding:13px 20px;border-radius:3px;border:1px solid var(--ink);color:var(--ink);transition:.18s}
+  .offer .cta:hover{background:var(--ink);color:var(--paper)}
+  .offer.feature .cta{background:var(--gold);border-color:var(--gold);color:#fff}
+  .offer.feature .cta:hover{opacity:.9}
+</style>
 <section id="help"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">How I help</span>
-    <h2>Deploy it for you — or teach your team to use it.</h2>
+    <span class="eyebrow">How it works</span>
+    <h2>From "are we exposed?" to a private system your team trusts.</h2>
+    <p>A clear path — start free, scope the work, then build. Each step earns the next.</p>
   </div>
-  <div class="help-grid">
-    <div class="help-card"><h3>Deploy your private AI</h3><p>Done-for-you: I set up custom, defensible AI in your own environment, so your documents and client data never leave your control.</p></div>
-    <div class="help-card"><h3>Train your team to use AI</h3><p>Hands-on workshops and CLE sessions: which tools to use, how to use them safely, and where AI actually saves time and money.</p></div>
+  <div class="offers">
+
+    <div class="offer">
+      <div class="tier">Start free</div>
+      <h3>The AI-Readiness Check</h3>
+      <p class="desc">Find out in 5 minutes where your AI use is exposed — and what to fix first.</p>
+      <ul>
+        <li>10-question self-assessment</li>
+        <li>The worksheet I use in real engagements</li>
+      </ul>
+      <div class="terms"><b>Free</b> · 5-minute scored quiz</div>
+      <a class="cta" href="readiness.html">Take the AI-Readiness Check →</a>
+    </div>
+
+    <div class="offer feature">
+      <div class="tier">Start here</div>
+      <h3>AI-Readiness Review</h3>
+      <p class="desc">A focused 1–2 week engagement. I map your exposure, prioritize the workflows worth automating, and hand you a plan you can act on.</p>
+      <ul>
+        <li>Exposure &amp; compliance map</li>
+        <li>The 2–3 workflows worth automating first</li>
+        <li>Architecture + build proposal</li>
+      </ul>
+      <div class="terms"><b>1–2 week engagement</b> · fee credited toward your build</div>
+      <a class="cta" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Book a free intro call →</a>
+    </div>
+
+    <div class="offer">
+      <div class="tier">Done for you</div>
+      <h3>Private AI Build</h3>
+      <p class="desc">I build and deploy defensible AI inside your environment — your data never leaves your control.</p>
+      <ul>
+        <li>Built around one high-value workflow</li>
+        <li>Logged, access-controlled, audit-ready</li>
+      </ul>
+      <div class="terms">Scoped from your Review</div>
+      <a class="cta" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Book a free intro call →</a>
+    </div>
+
+    <div class="offer">
+      <div class="tier">For teams &amp; firms</div>
+      <h3>Training &amp; CLE</h3>
+      <p class="desc">A hands-on workshop or accredited CLE on using AI safely on privileged data — taught from the engineering side.</p>
+      <ul>
+        <li>Which tools are safe, and which aren't</li>
+        <li>Maps to your rules (Rule 1.6, HIPAA, etc.)</li>
+      </ul>
+      <div class="terms"><b>Free intro session</b> for firms</div>
+      <a class="cta" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Request a session →</a>
+    </div>
+
   </div>
 </div></section>
 
@@ -200,14 +268,13 @@
     <input type="email" placeholder="Your email" aria-label="Email" required>
     <button type="submit">Send me the checklist</button>
   </form>
-  <a class="book" href="#">Or book a call →</a>
+  <a class="book" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Or book a call →</a>
 </div></div></section>
 
 <footer><div class="wrap">
-  <p>© 2026 Kyle Cedric Hanna · Founder, Aether Ventures · Chicago</p>
+  <p>© 2026 Kyle Cedric Hanna · Chicago</p>
   <div class="flinks"><a href="#work">Work</a><a href="#writing">Writing</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
 </div>
-<div class="wrap"><span class="note">Setup: wire forms to Kit · add real demo URLs to each "Try the live demo" link · set LinkedIn / book-a-call / article links · confirm "30+" is accurate.</span></div>
 </footer>
 </body>
 </html>
