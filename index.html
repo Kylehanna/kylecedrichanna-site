@@ -287,5 +287,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="flinks"><a href="#work">Work</a><a href="#writing">Writing</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
 </div>
 </footer>
+<script>
+  // Funnel event tracking → GTM dataLayer
+  window.dataLayer = window.dataLayer || [];
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a'); if(!a) return;
+    var href = a.getAttribute('href') || '';
+    if(href.indexOf('calendly.com') > -1){
+      window.dataLayer.push({event:'book_call_click', link_text:(a.textContent||'').trim()});
+    } else if(href.indexOf('readiness.html') > -1){
+      window.dataLayer.push({event:'quiz_start_click'});
+    }
+  });
+  var joinForm = document.querySelector('#join form');
+  if(joinForm){ joinForm.addEventListener('submit', function(){ window.dataLayer.push({event:'lead_capture', form:'homepage'}); }); }
+</script>
 </body>
 </html>

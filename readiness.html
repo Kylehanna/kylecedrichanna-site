@@ -254,6 +254,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('tierdesc').textContent=desc;
     r.style.display='block';
     document.getElementById('capbox').style.display='block';
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'quiz_complete', quiz_score:score, quiz_tier:tier});
     r.scrollIntoView({behavior:'smooth'});
   }
 
@@ -270,6 +272,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function capture(e){
     e.preventDefault();
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'lead_capture', form:'readiness_worksheet'});
     // TODO: POST to Kit form action when wired. For now, reveal worksheet client-side.
     document.getElementById('capform').style.display='none';
     document.getElementById('capok').style.display='block';
@@ -277,6 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     setTimeout(()=>document.getElementById('worksheet').scrollIntoView({behavior:'smooth'}),250);
     return false;
   }
+  document.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&(a.getAttribute('href')||'').indexOf('calendly.com')>-1){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'book_call_click',location:'quiz'});}});
 </script>
 </body>
 </html>
