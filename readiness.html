@@ -86,10 +86,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   table.ws th,table.ws td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
   table.ws th{background:var(--paper-2);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
   table.ws td input{width:100%;border:none;font-family:var(--sans);font-size:13.5px;background:transparent}
-  .rag{display:flex;gap:8px}
-  .rag label{font-family:var(--sans);font-size:12px;display:flex;align-items:center;gap:4px;cursor:pointer}
-  .dot{width:13px;height:13px;border-radius:50%;display:inline-block}
-  .r{background:var(--red)} .y{background:var(--gold)} .g{background:var(--green)}
+  .rag{display:flex;gap:6px}
+  .rag-btn{width:32px;height:32px;border-radius:50%;border:2px solid var(--line);background:#fff;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s}
+  .rag-btn:hover{border-color:var(--ink)}
+  .rag-btn.r.sel{background:var(--red);border-color:var(--red);color:#fff}
+  .rag-btn.y.sel{background:var(--gold);border-color:var(--gold);color:#fff}
+  .rag-btn.g.sel{background:var(--green);border-color:var(--green);color:#fff}
 
   .finalcta{background:var(--accent);color:#fff;border-radius:8px;padding:40px 32px;text-align:center;margin:40px 0 60px}
   .finalcta h2{color:#fff;font-size:30px;margin-bottom:10px}
@@ -136,13 +138,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="capture-box" id="capbox" style="display:none">
-      <h3>Get your worksheet + the fixes for your tier</h3>
-      <p>I'll send the editable AI-Readiness worksheet (the same one I use in engagements) and the specific gaps to close first. No spam.</p>
+      <h3>Want the worksheet as a PDF?</h3>
+      <p>Drop your email and I'll send the editable AI-Readiness worksheet (the same one I use in engagements) to work on offline — plus the specific gaps to close first. Or skip it and fill it in right here below. No spam.</p>
       <form class="capform" id="capform" data-kit="REPLACE_WITH_KIT_FORM_ACTION" onsubmit="return capture(event)">
         <input type="email" id="email" placeholder="you@firm.com" required aria-label="Email">
-        <button type="submit">Send me the worksheet</button>
+        <button type="submit">Email me the PDF</button>
       </form>
-      <div class="capok" id="capok">✓ On its way. Scroll down to start the worksheet now.</div>
+      <div class="capok" id="capok">✓ Sent — check your inbox for the PDF. Prefer to do it now? Fill it in below and use <b>Print / Save as PDF</b>.</div>
     </div>
   </div>
 
@@ -259,15 +261,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     r.scrollIntoView({behavior:'smooth'});
   }
 
-  // build RAG rows
+  // build RAG rows — clickable single-select per row
   const ragrows=document.getElementById('ragrows');
   RAG.forEach((row,i)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=`<td><b>${row[0]}</b></td><td>${row[1]}</td><td><div class="rag">
-      <label><span class="dot r"></span><input type="radio" name="rag${i}" style="display:none">R</label>
-      <label><span class="dot y"></span>Y</label>
-      <label><span class="dot g"></span>G</label></div></td>`;
+    tr.innerHTML=`<td><b>${row[0]}</b></td><td>${row[1]}</td>
+      <td><div class="rag" data-row="${i}">
+        <button type="button" class="rag-btn r" data-v="R" title="Missing">R</button>
+        <button type="button" class="rag-btn y" data-v="Y" title="Partial">Y</button>
+        <button type="button" class="rag-btn g" data-v="G" title="Solid">G</button>
+      </div></td>`;
     ragrows.appendChild(tr);
+  });
+  document.querySelectorAll('.rag').forEach(function(group){
+    group.addEventListener('click', function(e){
+      const b = e.target.closest('.rag-btn'); if(!b) return;
+      group.querySelectorAll('.rag-btn').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+    });
   });
 
   function capture(e){

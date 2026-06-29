@@ -45,6 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .capture button{height:50px;padding:0 22px;border:none;border-radius:2px;background:var(--gold);color:#fff;font-weight:600;font-size:14px;font-family:var(--sans);cursor:pointer;transition:opacity .2s}
   .capture button:hover{opacity:.88}
   .microcopy{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .capture-done{font-family:var(--sans);font-weight:600;color:inherit;margin:0}
 
   .cred{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
   .cred .wrap{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;padding:20px 28px}
@@ -80,118 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .post h3{font-size:21px;margin:10px 0 0;line-height:1.2}
   .post .src{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:12px}
 
-  /* help */
-  .help-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-  @media(max-width:720px){.help-grid{grid-template-columns:1fr}}
-  .help-card{border:1px solid var(--line);border-radius:4px;padding:34px;background:#fff}
-  .help-card h3{font-size:25px;margin-bottom:10px}
-  .help-card p{color:var(--muted);font-size:15px}
-
-  /* join band */
-  .join{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;padding:64px 28px}
-  .join h2{color:var(--paper);font-size:clamp(28px,4.4vw,42px);max-width:20ch;margin:0 auto 10px}
-  .join p{color:#bdb9b0;margin-bottom:26px}
-  .join .capture{margin:0 auto;justify-content:center}
-  .join .capture input{border-color:transparent}
-  .join .book{display:inline-block;margin-top:16px;color:#bdb9b0;font-size:13px;border-bottom:1px solid #807c74}
-
-  footer{padding:46px 0;border-top:1px solid var(--line)}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
-  footer p,footer a{font-size:13px;color:var(--muted)}
-  footer .flinks{display:flex;gap:22px}
-  .note{background:#fff7e6;border:1px solid #ecdca5;color:#7a5a12;font-size:12px;padding:8px 14px;border-radius:3px;margin-top:18px;display:inline-block}
-</style>
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLVTNVL2"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<nav><div class="wrap">
-  <a class="brand" href="#top">Kyle Cedric Hanna</a>
-  <div class="navlinks">
-    <a href="#work">Work</a>
-    <a href="#writing">Writing</a>
-    <a href="#help">Services</a>
-    <a class="navbtn" href="#join">Join the list</a>
-  </div>
-</div></nav>
-
-<!-- HERO -->
-<header id="top"><div class="wrap">
-  <span class="eyebrow">Private AI · Law firms & small businesses</span>
-  <h1>AI that survives an audit.</h1>
-  <p class="lede">I deploy private, defensible AI for firms and businesses that handle sensitive data — traceable, logged, and built to hold up when a client, a regulator, or opposing counsel asks how it works. Try the systems below, then grab the free checklist.</p>
-  <form class="capture" action="#" data-kit="REPLACE_WITH_KIT_FORM">
-    <input type="email" placeholder="Your email" aria-label="Email" required>
-    <button type="submit">Send me the checklist</button>
-  </form>
-  <p class="microcopy">Free · "Use AI Without Leaking Your Data" · 2-minute read</p>
-</div></header>
-
-<div class="cred"><div class="wrap">
-  <span>The White House</span><span>University of Chicago</span><span>Embedded with 30+ research & innovation offices</span><span>Deploys real production AI</span>
-</div></div>
-
-<!-- WORK / DEMOS -->
-<section id="work"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Selected work</span>
-    <h2>Don't take my word for it — try the systems I've deployed.</h2>
-    <p>Live, interactive prototypes running on public data. The production versions run privately, in the client's own environment.</p>
-  </div>
-  <div class="work-grid">
-
-    <article class="demo">
-      <div class="thumb"><span class="ph">Live demo</span><span class="kicker">Patent &amp; document intelligence</span></div>
-      <div class="body">
-        <h3>Translation Radar</h3>
-        <p>Ask plain-English questions across thousands of patents and technical documents — and get answers with citations back to the exact source.</p>
-        <div class="tags"><span class="tag">RAG</span><span class="tag">Cited answers</span><span class="tag">Document search</span></div>
-        <a class="try" href="#" data-demo="translation-radar">Try the live demo →</a>
-      </div>
-    </article>
-
-    <article class="demo">
-      <div class="thumb b"><span class="ph">Live demo</span><span class="kicker">Investment intelligence</span></div>
-      <div class="body">
-        <h3>Real-Estate Demand Radar</h3>
-        <p>Forecasts where housing demand is building — before the market prices it in — from employment and migration signals across hundreds of metro markets.</p>
-        <div class="tags"><span class="tag">Predictive analytics</span><span class="tag">Agentic</span><span class="tag">Dashboards</span></div>
-        <a class="try" href="#" data-demo="real-estate-radar">Try the live demo →</a>
-      </div>
-    </article>
-
-    <article class="demo">
-      <div class="thumb c"><span class="ph">Coming soon</span><span class="kicker">Legal &amp; research assistant</span></div>
-      <div class="body">
-        <h3>Research Assistant</h3>
-        <p>Query a body of legal and technical work product and get traceable, source-cited answers — built for high-stakes domains where "almost right" isn't good enough.</p>
-        <div class="tags"><span class="tag">RAG</span><span class="tag">Verifiable</span><span class="tag">Multi-step</span></div>
-        <a class="try" href="#" data-demo="research-assistant">Demo coming soon →</a>
-      </div>
-    </article>
-
-  </div>
-</div></section>
-
-<!-- WRITING -->
-<section id="writing" class="writing"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">Writing</span>
-    <h2>Plain-English AI, for people who run things.</h2>
-    <p>Practical pieces on deploying AI safely — on Substack and Medium.</p>
-  </div>
-  <div class="posts">
-    <a class="post" href="#"><span class="tag">Risk</span><h3>How to use AI without leaking client or customer data</h3><p class="src">Substack →</p></a>
-    <a class="post" href="#"><span class="tag">Build vs. Buy</span><h3>You don't need the best AI. You need your AI, deployed.</h3><p class="src">Substack →</p></a>
-    <a class="post" href="#"><span class="tag">Confidential AI</span><h3>The DeepSeek bans aren't really about DeepSeek</h3><p class="src">Medium →</p></a>
-    <a class="post" href="#"><span class="tag">Legal</span><h3>What every managing partner should know about AI and Rule 1.6</h3><p class="src">Substack →</p></a>
-  </div>
-</div></section>
-
-<!-- SERVICES / OFFER STACK -->
-<style>
+  /* offer stack */
   .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
   .offer{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 28px;transition:transform .2s,box-shadow .2s}
   .offer:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(26,26,26,.09)}
@@ -209,7 +99,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .offer .cta:hover{background:var(--ink);color:var(--paper)}
   .offer.feature .cta{background:var(--gold);border-color:var(--gold);color:#fff}
   .offer.feature .cta:hover{opacity:.9}
+
+  /* join band */
+  .join{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;padding:64px 28px}
+  .join h2{color:var(--paper);font-size:clamp(28px,4.4vw,42px);max-width:20ch;margin:0 auto 10px}
+  .join p{color:#bdb9b0;margin-bottom:26px}
+  .join .capture{margin:0 auto;justify-content:center}
+  .join .capture input{border-color:transparent}
+  .join .book{display:inline-block;margin-top:16px;color:#bdb9b0;font-size:13px;border-bottom:1px solid #807c74}
+
+  footer{padding:46px 0;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  footer p,footer a{font-size:13px;color:var(--muted)}
+  footer .flinks{display:flex;gap:22px}
 </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLVTNVL2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<nav><div class="wrap">
+  <a class="brand" href="#top">Kyle Cedric Hanna</a>
+  <div class="navlinks">
+    <a href="#help">How it works</a>
+    <a href="#work">Work</a>
+    <a href="#writing">Writing</a>
+    <a class="navbtn" href="#join">Join the list</a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<header id="top"><div class="wrap">
+  <span class="eyebrow">Private AI · Law firms & small businesses</span>
+  <h1>AI that survives an audit.</h1>
+  <p class="lede">I deploy private, defensible AI for firms and businesses that handle sensitive data — traceable, logged, and built to hold up when a client, a regulator, or opposing counsel asks how it works.</p>
+  <form class="capture" action="#" data-kit="REPLACE_WITH_KIT_FORM">
+    <input type="email" placeholder="Your email" aria-label="Email" required>
+    <button type="submit">Send me the checklist</button>
+  </form>
+  <p class="microcopy">Free · "Use AI Without Leaking Your Data" · 2-minute read</p>
+</div></header>
+
+<div class="cred"><div class="wrap">
+  <span>The White House</span><span>University of Chicago</span><span>Embedded with 30+ research & innovation offices</span><span>Deploys real production AI</span>
+</div></div>
+
+<!-- HOW IT WORKS / OFFER STACK -->
 <section id="help"><div class="wrap">
   <div class="sec-head">
     <span class="eyebrow">How it works</span>
@@ -270,6 +206,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div></section>
 
+<!-- WORK / DEMOS -->
+<section id="work"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Selected work</span>
+    <h2>Don't take my word for it — try the systems I've deployed.</h2>
+    <p>Live, interactive prototypes running on public data. The production versions run privately, in the client's own environment.</p>
+  </div>
+  <div class="work-grid">
+
+    <article class="demo">
+      <div class="thumb"><span class="ph">Live demo</span><span class="kicker">Patent &amp; document intelligence</span></div>
+      <div class="body">
+        <h3>Translation Radar</h3>
+        <p>Ask plain-English questions across thousands of patents and technical documents — and get answers with citations back to the exact source.</p>
+        <div class="tags"><span class="tag">RAG</span><span class="tag">Cited answers</span><span class="tag">Document search</span></div>
+        <a class="try" href="#" data-demo="translation-radar">Try the live demo →</a>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div class="thumb b"><span class="ph">Live demo</span><span class="kicker">Investment intelligence</span></div>
+      <div class="body">
+        <h3>Real-Estate Demand Radar</h3>
+        <p>Forecasts where housing demand is building — before the market prices it in — from employment and migration signals across hundreds of metro markets.</p>
+        <div class="tags"><span class="tag">Predictive analytics</span><span class="tag">Agentic</span><span class="tag">Dashboards</span></div>
+        <a class="try" href="#" data-demo="real-estate-radar">Try the live demo →</a>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div class="thumb c"><span class="ph">Coming soon</span><span class="kicker">Legal &amp; research assistant</span></div>
+      <div class="body">
+        <h3>Research Assistant</h3>
+        <p>Query a body of legal and technical work product and get traceable, source-cited answers — built for high-stakes domains where "almost right" isn't good enough.</p>
+        <div class="tags"><span class="tag">RAG</span><span class="tag">Verifiable</span><span class="tag">Multi-step</span></div>
+        <a class="try" href="#" data-demo="research-assistant">Demo coming soon →</a>
+      </div>
+    </article>
+
+  </div>
+</div></section>
+
+<!-- WRITING -->
+<section id="writing" class="writing"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Writing</span>
+    <h2>Plain-English AI, for people who run things.</h2>
+    <p>Practical pieces on deploying AI safely — on Substack and Medium.</p>
+  </div>
+  <div class="posts">
+    <a class="post" href="#"><span class="tag">Risk</span><h3>How to use AI without leaking client or customer data</h3><p class="src">Substack →</p></a>
+    <a class="post" href="#"><span class="tag">Build vs. Buy</span><h3>You don't need the best AI. You need your AI, deployed.</h3><p class="src">Substack →</p></a>
+    <a class="post" href="#"><span class="tag">Confidential AI</span><h3>The DeepSeek bans aren't really about DeepSeek</h3><p class="src">Medium →</p></a>
+    <a class="post" href="#"><span class="tag">Legal</span><h3>What every managing partner should know about AI and Rule 1.6</h3><p class="src">Substack →</p></a>
+  </div>
+</div></section>
+
 <!-- JOIN -->
 <section id="join"><div class="wrap"><div class="join">
   <span class="eyebrow" style="color:var(--gold)">Join the list</span>
@@ -284,7 +277,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer><div class="wrap">
   <p>© 2026 Kyle Cedric Hanna · Chicago</p>
-  <div class="flinks"><a href="#work">Work</a><a href="#writing">Writing</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
+  <div class="flinks"><a href="#help">How it works</a><a href="#work">Work</a><a href="#writing">Writing</a><a href="#">LinkedIn</a></div>
 </div>
 </footer>
 <script>
@@ -299,8 +292,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       window.dataLayer.push({event:'quiz_start_click'});
     }
   });
-  var joinForm = document.querySelector('#join form');
-  if(joinForm){ joinForm.addEventListener('submit', function(){ window.dataLayer.push({event:'lead_capture', form:'homepage'}); }); }
+  // Email capture forms — no reload, show confirmation, fire event
+  // TODO(Kit): POST the email to the Kit form action to actually deliver the checklist PDF.
+  document.querySelectorAll('form.capture').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      window.dataLayer.push({event:'lead_capture', form:'homepage'});
+      form.innerHTML = '<p class="capture-done">✓ You’re in — check your inbox for the checklist. (It’s on its way.)</p>';
+    });
+  });
 </script>
 </body>
 </html>
