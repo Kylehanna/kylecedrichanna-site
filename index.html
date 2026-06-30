@@ -103,6 +103,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .offer .cta:hover{background:var(--ink);color:var(--paper)}
   .offer.feature .cta{background:var(--gold);border-color:var(--gold);color:#fff}
   .offer.feature .cta:hover{opacity:.9}
+  .offer .book-alt{display:block;margin-top:10px;text-align:center;font-family:var(--sans);font-size:12.5px;color:var(--muted);transition:color .2s}
+  .offer .book-alt:hover{color:var(--ink)}
 
   /* join band */
   .join{background:var(--ink);color:var(--paper);text-align:center;border-radius:4px;padding:64px 28px}
@@ -193,8 +195,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li>The 2–3 workflows worth automating first</li>
         <li>Architecture + build proposal</li>
       </ul>
-      <div class="terms"><b>1–2 week engagement</b> · fee credited toward your build</div>
-      <a class="cta" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Book a free intro call →</a>
+      <div class="terms"><b>1–2 week engagement</b> · fixed fee, credited toward your build</div>
+      <a class="cta" href="https://buy.stripe.com/fZufZhgiggAdeE96MNbV600" target="_blank" rel="noopener">Book your AI-Readiness Review →</a>
+      <a class="book-alt" href="https://calendly.com/kylecedrichanna/ai-readiness-intro" target="_blank" rel="noopener">Prefer to talk first? Book a 15-min intro →</a>
     </div>
 
     <div class="offer">
@@ -357,6 +360,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       window.dataLayer.push({event:'book_call_click', link_text:(a.textContent||'').trim()});
     } else if(href.indexOf('readiness.html') > -1){
       window.dataLayer.push({event:'quiz_start_click'});
+    } else if(href.indexOf('buy.stripe.com') > -1){
+      window.dataLayer.push({event:'begin_checkout', link_text:(a.textContent||'').trim()});
     }
   });
   // Email capture forms — no reload, show confirmation, fire event
