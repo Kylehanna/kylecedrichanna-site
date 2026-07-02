@@ -10,7 +10,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-Readiness Check — Kyle Cedric Hanna</title>
+<title>AI-Readiness Assessment — Kyle Cedric Hanna</title>
 <meta name="description" content="In 5 minutes, find out where your AI use is exposed — and what to fix first. A free scored self-assessment + worksheet.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -138,13 +138,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="capture-box" id="capbox" style="display:none">
-      <h3>Want the worksheet as a PDF?</h3>
-      <p>Drop your email and I'll send the editable AI-Readiness worksheet (the same one I use in engagements) to work on offline — plus the specific gaps to close first. Or skip it and fill it in right here below. No spam.</p>
-      <form class="capform" id="capform" data-kit="REPLACE_WITH_KIT_FORM_ACTION" onsubmit="return capture(event)">
+      <h3>Get the worksheet as an editable PDF</h3>
+      <p>Enter your email and I'll send the editable AI-Readiness worksheet — the same one I use in engagements — plus the specific gaps to close first. You'll also get occasional case studies and new writing; unsubscribe anytime.</p>
+      <form class="capform" id="capform" onsubmit="return capture(event)">
         <input type="email" id="email" placeholder="you@firm.com" required aria-label="Email">
-        <button type="submit">Email me the PDF</button>
+        <button type="submit">Email me the worksheet</button>
       </form>
-      <div class="capok" id="capok">✓ Sent — check your inbox for the PDF. Prefer to do it now? Fill it in below and use <b>Print / Save as PDF</b>.</div>
+      <div class="capok" id="capok">✓ Sent — the worksheet is on its way to your inbox, from Kyle. It's also unlocked right below — fill it in and use <b>Print / Save as PDF</b>.</div>
+      <div class="capok" id="caperr" style="display:none;color:#b23b3b">Hmm — that didn't go through. Double-check the address and try again.</div>
     </div>
   </div>
 
@@ -283,13 +284,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function capture(e){
     e.preventDefault();
+    var form=document.getElementById('capform');
+    var btn=form.querySelector('button');
+    var email=(document.getElementById('email').value||'').trim();
+    if(!email) return false;
+    var orig=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
+    document.getElementById('caperr').style.display='none';
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push({event:'lead_capture', form:'readiness_worksheet'});
-    // TODO: POST to Kit form action when wired. For now, reveal worksheet client-side.
-    document.getElementById('capform').style.display='none';
-    document.getElementById('capok').style.display='block';
-    document.getElementById('worksheet').style.display='block';
-    setTimeout(()=>document.getElementById('worksheet').scrollIntoView({behavior:'smooth'}),250);
+    var fd=new FormData(); fd.append('email_address', email);
+    fetch('https://app.kit.com/forms/9631061/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body:fd})
+      .then(function(r){ return r.json().catch(function(){return {};}); })
+      .then(function(){
+        form.style.display='none';
+        document.getElementById('capok').style.display='block';
+        document.getElementById('worksheet').style.display='block';
+        setTimeout(function(){document.getElementById('worksheet').scrollIntoView({behavior:'smooth'});},250);
+      })
+      .catch(function(){
+        btn.disabled=false; btn.textContent=orig;
+        document.getElementById('caperr').style.display='block';
+      });
     return false;
   }
   document.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&(a.getAttribute('href')||'').indexOf('calendly.com')>-1){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'book_call_click',location:'quiz'});}});
