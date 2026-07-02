@@ -84,6 +84,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .post .tag{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .post h3{font-size:21px;margin:10px 0 0;line-height:1.2}
   .post .src{font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:12px}
+  .post.soon{pointer-events:none}
+  .post.soon:hover{transform:none}
+  .post.soon h3{filter:blur(5px);user-select:none}
+  .post.soon .src{color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
 
   /* offer stack */
   .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
@@ -278,10 +282,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>Practical pieces on deploying AI safely — on Substack and Medium.</p>
   </div>
   <div class="posts">
-    <a class="post" href="#"><span class="tag">Risk</span><h3>How to use AI without leaking client or customer data</h3><p class="src">Substack →</p></a>
-    <a class="post" href="#"><span class="tag">Build vs. Buy</span><h3>You don't need the best AI. You need your AI, deployed.</h3><p class="src">Substack →</p></a>
-    <a class="post" href="#"><span class="tag">Confidential AI</span><h3>The DeepSeek bans aren't really about DeepSeek</h3><p class="src">Medium →</p></a>
-    <a class="post" href="#"><span class="tag">Legal</span><h3>What every managing partner should know about AI and Rule 1.6</h3><p class="src">Substack →</p></a>
+    <a class="post" href="https://kylesaidso.substack.com/p/the-ai-mistake-that-could-put-client" target="_blank" rel="noopener"><span class="tag">Risk</span><h3>How to use AI without leaking client or customer data</h3><p class="src">Substack →</p></a>
+    <a class="post soon"><span class="tag">Build vs. Buy</span><h3>You don't need the best AI. You need your AI, deployed.</h3><p class="src">Coming soon</p></a>
+    <a class="post soon"><span class="tag">Confidential AI</span><h3>The DeepSeek bans aren't really about DeepSeek</h3><p class="src">Coming soon</p></a>
+    <a class="post soon"><span class="tag">Legal</span><h3>What every managing partner should know about AI and Rule 1.6</h3><p class="src">Substack →</p></a>
   </div>
 </div></section>
 
