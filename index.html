@@ -90,13 +90,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .post.soon .src{color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
 
   /* offer stack */
-  .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-  .offer{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 28px;transition:transform .2s,box-shadow .2s}
+  .offers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+  @media(max-width:920px){.offers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:520px){.offers{grid-template-columns:1fr}}
+  .offer{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px 22px;transition:transform .2s,box-shadow .2s}
   .offer:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(26,26,26,.09)}
   .offer.feature{border:1.5px solid var(--accent);box-shadow:0 14px 40px rgba(15,76,92,.10)}
   .offer .tier{font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:600;color:var(--accent);margin-bottom:14px}
   .offer.feature .tier{color:var(--gold)}
-  .offer h3{font-size:26px;margin-bottom:8px}
+  .offer h3{font-size:22px;margin-bottom:8px;line-height:1.15}
   .offer .desc{color:var(--muted);font-size:14.5px;margin-bottom:16px}
   .offer ul{list-style:none;margin:0 0 18px;padding:0}
   .offer li{font-family:var(--sans);font-size:14px;color:var(--ink);padding-left:22px;position:relative;margin-bottom:9px;line-height:1.5}
